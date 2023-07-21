@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LazarGalic10420.RegisterPage"
+             xmlns:local="clr-namespace:LazarGalic10420.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Registruj se">
+    <ContentPage.BindingContext>
+        <local:RegisterViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" BackgroundColor="#fff">
+            <Image Source="register_icon.png" HeightRequest="100" Margin="0,30,0,30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Label Text="Vaše ime:" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="FirstName" Placeholder="Ime" Text="{Binding FirstName.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding FirstName.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vaše prezime:" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="LastName" Placeholder="Prezime" Text="{Binding LastName.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding LastName.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vaš email:" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding Email.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vaša šifra:" FontSize="16" TextColor="#333333" />
+            <Entry IsPassword="True" x:Name="Password" Placeholder="Šifra" Text="{Binding Password.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding Password.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vaš broj lične karte (opciono):" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="IdentityNumber" Placeholder="Broj lične karte" Text="{Binding IdentityNumber.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding IdentityNumber.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vaš broj telefona (opciono):" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="PhoneNumber" Placeholder="Broj telefona" Text="{Binding PhoneNumber.Value}" BackgroundColor="#F2F2F2" />
+            <Label Text="{Binding PhoneNumber.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Grid>
+                <StackLayout x:Name="contentLayout">
+                </StackLayout>
+            </Grid>
+            
+            <Button
+            x:Name="RegisterBtn"
+            Text="Registruj se"
+            BackgroundColor="#333"
+            TextColor="White"
+            CornerRadius="5"
+            HorizontalOptions="Center"
+            WidthRequest="200"
+            HeightRequest="40"
+            IsEnabled="{Binding IsRegisterButtonEnabled}"
+            Clicked="RegisterClick"    
+            />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LazarGalic10420.AdminUsersPage"
+             xmlns:local="clr-namespace:LazarGalic10420.ViewModel"
+             Title="Admin Panel -Korisnici">
+    <ContentPage.BindingContext>
+        <local:UsersViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout HorizontalOptions="Center">
+            <Label Text="Admin - Korisnici" VerticalOptions="Center"  FontSize="24" HorizontalOptions="Center" />
+
+            <CollectionView x:Name="collectionView"
+                ItemsSource="{Binding Users}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout BackgroundColor="White" Padding="10" VerticalOptions="Center">
+
+                            <Button Margin="0,0,15,0" HorizontalOptions="End" Text="Izmeni"
+                                Clicked="SinglePagePush" 
+                                AutomationId="{Binding Id}" 
+                                BackgroundColor="Orange" TextColor="White" />
+                         <!--  AutomationId="{Binding Id}"   -->
+                            <VerticalStackLayout>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString >
+                                            <Span Text="Autor: " />
+                                            <Span Text="{Binding FirstName}" FontAttributes="Bold" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding LastName}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString >
+                                            <Span Text="Email: " />
+                                            <Span Text="{Binding Email}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString >
+                                            <Span Text="Uloga: " />
+                                            <Span Text="{Binding Role.NameRole}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString >
+                                            <Span Text="Registrovan: " />
+                                            <Span Text="{Binding CreatedAt}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString>
+                                            <Span Text="Poslednje Izmenjen: " />
+                                            <Span Text="{Binding LastUpdatedAt}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString>
+                                            <Span Text="Obrisan : " />
+                                            <Span Text="{Binding DeletedAt}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="6,0,0,0" >
+                                    <Label.FormattedText Margin="3,5,0,5">
+                                        <FormattedString>
+                                            <Span Text="Aktivan : " />
+                                            <Span Text="{Binding IsActive}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

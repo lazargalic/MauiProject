@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="LazarGalic10420.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+
+            <Label Text="O našem blogu" SemanticProperties.HeadingLevel="Level1" FontSize="32" Padding="0 ,40, 0, 0" HorizontalOptions="Center" />
+
+            <Image Source="main1.jpg" SemanticProperties.Description=" Main1" HeightRequest="200" HorizontalOptions="Center" />
+
+            <Label Text="Pisanje na ovom blogu može doneti brojne koristi. Kroz pisanje na blogu možete deliti svoju stručnost i znanje iz određene oblasti. To vam omogućava da izgradite reputaciju kao ekspert i pokažete svoje sposobnosti drugima. Omogućava da kreirate svoj lični brend. Možete predstaviti svoju jedinstvenu perspektivu, stil pisanja i vrednosti koje zastupate. Ovo vam pomaže da se istaknete i privučete pažnju čitalaca. Pruža vam priliku da se povežete sa drugim stručnjacima, čitaocima i istomišljenicima. Možete izgraditi korisne veze i proširiti svoju mrežu kontakata u svojoj industriji."
+               SemanticProperties.HeadingLevel="Level2"
+               SemanticProperties.Description="Slika"
+               FontSize="18"
+               HorizontalOptions="Center" />
+
+            <CarouselView ItemsSource="{Binding Images}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True"
+                           BorderColor="DarkGray"
+                           CornerRadius="5"
+                           Margin="5"
+                           HeightRequest="350"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand">
+                            <Image Source="{Binding Path}"
+                               Aspect="AspectFill"
+                               HeightRequest="350"
+                               WidthRequest="350"
+                               HorizontalOptions="Center" />
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Label Text="Zašto treba pisati na našem blogu?" SemanticProperties.HeadingLevel="Level1" FontSize="32" Padding="0 ,40, 0, 0" HorizontalOptions="Center" />
+
+            <Label 
+               Padding="0,0,0,50" 
+               Text="Izražavanje kreativnosti. Pisanje na ovom blogu vam omogućava da iskažete svoju kreativnost i originalnost. Možete istraživati različite teme, stilove pisanja i eksperimentisati sa svojim glasom. Lični razvoj. To je izazov koji zahteva istrajnost, istraživanje i kontinuirano učenje. Kroz ovaj proces, možete unaprediti svoje veštine pisanja, istraživanja i komunikacije. Inspirišite druge. Vaše priče, saveti i iskustva mogu motivisati ljude, pomoći im da reše probleme i pružiti im novu perspektivu. Priliku da utičete na mišljenje i stavove drugih ljudi. Možete pokrenuti važne rasprave, širiti svest o određenim temama i zagovarati pozitivne promene. Odličan način da zaokružite sadržaj koji već stvarate. Ako već imate druge platforme, kao što su društvene mreže, pisanje na blogu vam omogućava da pružite detaljnije informacije, analize ili priče koje ne biste mogli da podelite na drugim mestima."
+               SemanticProperties.HeadingLevel="Level2"
+               SemanticProperties.Description="TEKST"
+               FontSize="18"
+               HorizontalOptions="Center" />
+
+ 
+              
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+    
+</ContentPage>

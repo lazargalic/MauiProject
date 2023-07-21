@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LazarGalic10420.LoginPage"
+             xmlns:local="clr-namespace:LazarGalic10420.ViewModel"
+             Title="Uloguj se">
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" BackgroundColor="#fff">
+            <Image Source="login.jpg" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Label Text="Vas Email:" FontSize="16" TextColor="#333333" />
+            <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="#F2F2F2" />
+
+            <Label Text="{Binding Email.Error}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Label Text="Vasa Sifra:" FontSize="16" TextColor="#333333" />
+            <Entry IsPassword="True" x:Name="Password" Placeholder="Password" Text="{Binding Password.Value}" BackgroundColor="#F2F2F2" />
+
+            <Label Text="{Binding Password.Error}" IsVisible="{Binding Password.HasError}" FontSize="16" TextColor="Red" Margin="0,0,0,10" />
+
+            <Button
+            Margin="0,20,0,0"
+            x:Name="LoginBtn"
+            Text="Uloguj se "
+            BackgroundColor="#333"
+            TextColor="White"
+            CornerRadius="5"
+            HorizontalOptions="Center"
+            WidthRequest="200"
+            HeightRequest="40"
+            IsEnabled="{Binding IsLoginButtonEnabled}"
+            Clicked="LoginClick" />   <!-- Clicked="{ Binding LoginCommand}" />  Ne moze, mora u code Behindu Click, ViewModel samo preko Command 
+            Error	XLS0523	Event 'Clicked' can only be bound to properties of delegate type 'EventHandler'.  -->
+            <!-- Reaguje samo na klik tako da mora ipak Click -->
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

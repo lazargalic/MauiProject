@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LazarGalic10420.ArticlesPage"
+             xmlns:local="clr-namespace:LazarGalic10420.ViewModel"
+             Title="Objave">
+
+    <ContentPage.BindingContext>
+        <local:ArticlesViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <!-- Filtiriranje -->
+            <StackLayout Grid.Row="1" BackgroundColor="White" Padding="20">
+                <Label Text="Pretrazi:" FontSize="18" FontAttributes="Bold" />
+                <StackLayout Padding="0,10">
+                    <Label Text="Naslov:" />
+                    <Entry Text="{Binding SearchNameArticle.Value}" Placeholder="Unesite naslov" />
+                </StackLayout>
+                <StackLayout Padding="0,10">
+                    <Label Text="Kategorija:" />
+                    <!--RADIO BUTTONI -->
+                    <StackLayout RadioButtonGroup.GroupName="Countries"
+                        RadioButtonGroup.SelectedValue="{Binding SelectionDimension.Value}">
+                        <RadioButton Value="2"  Content="Polovina Ekrana"   />
+                        <RadioButton Value="1"  Content="Celi Ekran"  />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="0,10">
+                    <Label Text="Država:" />
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsCountry1Selected.Value}"  AutomationId="1" />
+                        <Label Text="Srbija" Padding="0,11,0,0" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsCountry2Selected.Value}" AutomationId="2" />
+                        <Label Text="Bosna" Padding="0,11,0,0" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsCountry3Selected.Value}"  AutomationId="3" />
+                        <Label Text="Crna Gora" Padding="0,11,0,0" />
+                    </StackLayout>
+
+                </StackLayout>
+                <StackLayout Padding="0,10">
+                    <Label Text="Datum Od:" />
+                    <DatePicker Date="{Binding ArticleBeggin.Value}" />
+                    <Label Text="Datum Do:" />
+                    <DatePicker Date="{Binding ArticleEnd.Value}" />
+                </StackLayout>
+                <Button Text="Pretrazi" Command="{Binding SearchCommand}" BackgroundColor="#333" TextColor="White" />
+            </StackLayout>
+            <!-- Filtiriranje -->
+
+
+            <!-- POSTOVI -->
+            <CollectionView ItemsSource="{Binding Articles}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Margin="0,40,0,50">
+                                <Label Text="{Binding NameArticle}" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" />
+
+                                <Image Source="{Binding MainPicturePath}">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image" Binding="{Binding CategoryDimensionId}" Value="1">
+                                            <Setter Property="WidthRequest" Value="375" />
+                                            <Setter Property="HeightRequest" Value="300" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding CategoryDimensionId}" Value="2">
+                                            <Setter Property="WidthRequest" Value="200" />
+                                            <Setter Property="HeightRequest" Value="150" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+
+
+                                <Label HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Autor: " />
+                                            <Span Text="{Binding Author.FistName}" FontAttributes="Bold" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Author.LastName}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Broj reakcija: " />
+                                            <Span Text="{Binding EmotionsNumber}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Period: " />
+                                            <Span Text="{Binding Beggin}" FontAttributes="Bold" />
+                                            <Span Text=" / " />
+                                            <Span Text="{Binding End}" FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label >
+                                <Label HorizontalOptions="Center" Text="{Binding Description}" />
+                                <Label HorizontalOptions="Center">
+                                    <Label.FormattedText Margin="0,5,0,5">
+                                        <FormattedString >
+                                            <Span Text="Lokacija: " />
+                                            <Span Text="{Binding Township.NameCountry}" FontAttributes="Italic,Bold"  />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <StackLayout WidthRequest="150" >
+                                    <Button BackgroundColor="AliceBlue" TextColor="#333" Text="Procitaj vise" Command="{Binding ReadMoreCommand}" CommandParameter="{Binding Data.Id}" />
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView Margin="15,0,15,0" HeightRequest="2" BackgroundColor="Black" HorizontalOptions="FillAndExpand" />
+
+                        </VerticalStackLayout>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout Margin="0,20,50,0" HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+
+                            <Image Grid.Column="0" Source="empty_search.jpg" WidthRequest="150" HeightRequest="150" />
+
+
+                            <Label TextColor="DarkBlue" Text="Ne postoje rezultati za ovu vrstu pretrage."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                            <Label  Margin="10,0,10,30" Text="Pretrazite po novim kriterijumima?"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

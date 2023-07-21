@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LazarGalic10420.UpdateUserPage"
+             Title="Izmeni Korisnika">
+    <ScrollView>
+        <VerticalStackLayout>
+        <!-- <Label  x:Name="IdLabel"  VerticalOptions="Center"  HorizontalOptions="Center" />  Ovo je  IdLabel.Text = value; -->
+
+        <Label 
+            x:Name="IdLabel2"
+            Text="{Binding Vrednost.Value}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <StackLayout Padding="20" Spacing="10">
+                <Label Text="Ažuriranje Korisnika" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,20" TextColor="#333333" />
+
+                <Label Text="Ime" FontSize="16" TextColor="#333333" />
+                <Entry Text="{Binding FirstName.Value}" Placeholder="Unesite ime" />
+                <Label Text="{Binding FirstName.Error}" TextColor="Red" />
+
+                <Label Text="Prezime" FontSize="16" TextColor="#333333" />
+                <Entry Text="{Binding LastName.Value}" Placeholder="Unesite prezime" />
+                <Label Text="{Binding LastName.Error}" TextColor="Red" />
+
+                <Label Text="Email" FontSize="16" TextColor="#333333" />
+                <Entry Text="{Binding Email.Value}" Placeholder="Unesite email" />
+                <Label Text="{Binding Email.Error}" TextColor="Red" />
+
+                <Label Text="Uloga" FontSize="16" TextColor="#333333" />
+                <StackLayout RadioButtonGroup.GroupName="Countries"
+                        RadioButtonGroup.SelectedValue="{Binding SelectionRole.Value}">
+                                             <!-- Hardokodovano nece da se bajnduje sa ovim iznad-->
+                    <RadioButton Value="1" IsChecked="True" Content="Korisnik"  />
+                    <RadioButton Value="2"  Content="Administrator"   />
+                </StackLayout>
+                <Label Text="{Binding SelectionRole.Error}" TextColor="Red" />
+
+                <Label Text="Aktivan" FontSize="16" TextColor="#333333" />
+                <Switch OnColor="DarkOrange" IsToggled="{Binding IsActive.Value}" />
+
+                <Label Text="Broj Telefona" FontSize="16" TextColor="#333333" />
+                <Entry Text="{Binding PhoneNumber.Value}" Placeholder="Unesite broj telefona" Keyboard="Telephone" />
+                <Label Text="{Binding PhoneNumber.Error}" TextColor="Red" />
+
+                <Label Text="Broj Lične Karte" FontSize="16" TextColor="#333333" />
+                <Entry Text="{Binding IdentityNumber.Value}" Placeholder="Unesite broj lične karte" />
+                <Label Text="{Binding IdentityNumber.Error}" TextColor="Red" />
+
+                <Button Text="Ažuriraj" IsEnabled="{Binding IsUpdatedButtonEnabled}" Command="{Binding UpdateCommand}" CommandParameter="{Binding Vrednost.Value }" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White" WidthRequest="120" HeightRequest="40" CornerRadius="8" />
+            </StackLayout>
+
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+
+
+</ContentPage>
